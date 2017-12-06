@@ -1,5 +1,5 @@
 {
-    "name": "offerel/roundcube_storage",
+    "name": "offerel/storage",
 	"description": "Integrates elFinder in to Roundcube",
     "type": "roundcube-plugin",
     "license": "AGPL-3.0",
