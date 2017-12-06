@@ -1,0 +1,9 @@
+#taskbar a.button-storage span.button-inner {
+	background: url(images/storage.png) 0 0px no-repeat;
+	background-size: 21px;
+}
+#taskbar a.button-storage:hover span.button-inner,
+#taskbar a.button-storage.button-selected span.button-inner {
+	background: url(images/storage_sel.png) 0 0px no-repeat;
+	background-size: 21px;
+}
