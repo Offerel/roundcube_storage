@@ -22,8 +22,7 @@ class storage extends rcube_plugin
 		$this->add_texts('localization/', true);
 
 		$this->include_stylesheet($this->local_skin_path() . '/storage.css');
-		$this->include_script('client.js');
-
+		
 		$this->register_task('storage');
 
 		$this->add_button(array(
@@ -49,7 +48,7 @@ class storage extends rcube_plugin
 	function action()
 	{
 		$rcmail = rcmail::get_instance();
-		// register UI objects
+		$this->include_script('client.js');
 		$rcmail->output->add_handlers(array('storagecontent' => array($this, 'content'),));
 		$rcmail->output->set_pagetitle($this->gettext('storage'));
 		$rcmail->output->send('storage.storage');
