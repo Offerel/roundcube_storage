@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
 	"name": "offerel/elfinder",
 	"description": "Directly integrate elFinder as App in to Roundcubewith SSO.",
 	"keywords": ["files","webdav","filemanager","elfinder"],
@@ -23,3 +24,19 @@
 		"roundcube/plugin-installer": ">=0.1.6"
 	}
 }
+=======
+    "name": "offerel/storage",
+	"description": "Integrates elFinder in to Roundcube",
+    "type": "roundcube-plugin",
+    "license": "AGPL-3.0",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://plugins.roundcube.net"
+        }
+    ],
+    "require": {
+        "roundcube/plugin-installer": ">=0.1.6"
+    }
+}
+>>>>>>> 2ff387e35e2b4c7e784970272bbe49381f92891c
