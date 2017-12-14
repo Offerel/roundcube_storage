@@ -19,13 +19,8 @@ class storage extends rcube_plugin
 
 		$this->add_texts('localization/', true);
 
-<<<<<<< HEAD
 		$this->include_stylesheet($this->local_skin_path() . '/elfinder.css');
 
-=======
-		$this->include_stylesheet($this->local_skin_path() . '/storage.css');
-		
->>>>>>> 2ff387e35e2b4c7e784970272bbe49381f92891c
 		$this->register_task('storage');
 
 		$this->add_button(array(
@@ -44,10 +39,6 @@ class storage extends rcube_plugin
 	function action()
 	{
 		$rcmail = rcmail::get_instance();
-<<<<<<< HEAD
-=======
-		$this->include_script('client.js');
->>>>>>> 2ff387e35e2b4c7e784970272bbe49381f92891c
 		$rcmail->output->add_handlers(array('storagecontent' => array($this, 'content'),));
 		$rcmail->output->set_pagetitle($this->gettext('storage'));
 		$rcmail->output->send('storage.storage');
