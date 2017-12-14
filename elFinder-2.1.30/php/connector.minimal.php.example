@@ -1,5 +1,7 @@
 <?php
 error_reporting(0); // Set E_ALL for debuging
+// This part is needed to use the Roundcube Session for authentication. Don't remove this !!!
+// ------------------------------------------------------------------------------------------
 define('INSTALL_PATH', realpath(__DIR__ . '/../../../../') . '/');
 include INSTALL_PATH . 'program/include/iniset.php';
 $rcmail = rcmail::get_instance();
@@ -10,6 +12,9 @@ if (!empty($rcmail->user->ID)) {
 else {
 	die('Not logged in.');
 }
+// Roundcube authentication finished. You can use now the $path variable as path for elFinder.
+// ------------------------------------------------------------------------------------------
+
 
 // elFinder autoload
 require './autoload.php';
