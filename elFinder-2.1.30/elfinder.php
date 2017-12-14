@@ -1,5 +1,36 @@
 <?php
-session_start();
+define('INSTALL_PATH', realpath(__DIR__ . '/../../../') . '/');
+require_once INSTALL_PATH . 'program/include/iniset.php';
+$rcmail = rcmail::get_instance();
+
+if (!empty($rcmail->user->ID)) {
+	include('elfinder.html');
+}
+else {
+	header('location: ../../../');
+}
+die();
+//session_start();
+//require_once(str_replace('/public_html/plugins/storage','/vendor/autoload.php',dirname(dirname($_SERVER['SCRIPT_FILENAME']))));
+/*
+$include_path = '/var/www/roundcubemail-1.3.3/program/lib/';                                                                                                                                                     
+$include_path.= ini_get('include_path');
+set_include_path($include_path);                                                                                                                                                                     
+require_once '/var/www/roundcubemail-1.3.3/program/include/iniset.php';
+
+	function test()  {
+		$rcmail = rcmail::get_instance();
+		
+		if (!empty($rcmail->user->ID)) {
+		// user is authenticated, allow access
+			$username = $rcmail->user->get_username();
+			die('bin drin');
+			//include('elfinder.html');
+		} else {
+			die('hau ab');
+		}
+	}
+*/
 include(dirname(dirname($_SERVER['SCRIPT_FILENAME'])).DIRECTORY_SEPARATOR."config.inc.php");
 $passwdFile = $config['htpasswd'];
 
@@ -88,9 +119,9 @@ function dform()
 	<html>
 	<body>
 	<form id='lform' action='elfinder.php' method='post'>
-	<input type='hidden' id='username' name='username' value=''>
-	<input type='hidden' id='password' name='password' value=''>
-	<input id='send' style='display: none;' type='submit' name='send' value='Login'>
+	<input type='text' id='username' name='username' value=''>
+	<input type='text' id='password' name='password' value=''>
+	<input id='send'  type='submit' name='send' value='Login'>
 	</form>
 	</body>
 	</html>";
@@ -129,9 +160,11 @@ if(isset($_GET['logout']))
 if(!isset($_SESSION['authorized']))
 {
 	echo dform();
+	//die("Loginform");
 } 
 else 
 {
 	include('elfinder.html');
+	//die("bin drin");
 }
  ?>
