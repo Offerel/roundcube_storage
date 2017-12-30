@@ -3,7 +3,7 @@
  * Roundcube elfinder Plugin
  * Integrate elFinder in to Roundcube
  *
- * @version 1.0.1
+ * @version 1.1.0
  * @author Offerel
  * @copyright Copyright (c) 2017, Offerel
  * @license GNU General Public License, version 3
@@ -21,6 +21,8 @@ class storage extends rcube_plugin
 
 		$this->include_stylesheet($this->local_skin_path() . '/elfinder.css');
 
+		$this->include_script('client.js');
+
 		$this->register_task('storage');
 
 		$this->add_button(array(
@@ -34,8 +36,60 @@ class storage extends rcube_plugin
 		if ($rcmail->task == 'storage') {
 			$this->register_action('index', array($this, 'action'));
 		}
-	}
+		
+		$this->add_hook('template_container',                 array($this, 'add_saveatt_link'));
 
+		$this->register_action('save_one', array($this, 'save_one'));
+	}
+	
+	public function add_saveatt_link($p)
+    {
+        if ($p['name'] == 'attachmentmenu') {
+            $link = $this->api->output->button(array(
+                'type' => 'link',
+                'id'   => 'attachmentmenusave',
+                'command'  => 'plugin.storage.save_one',
+                'class' => 'savelink icon active',
+                'content'  => html::tag('span', array('class'=>'icon saveatt'),
+                    rcube::Q($this->gettext('saveattachment')))
+            ));
+            $p['content'] .= html::tag('li', array('role'=>'menuitem'), $link);
+        }
+        return $p;
+    }
+
+	public function save_one($args)
+	{
+		$rcmail = rcmail::get_instance();
+		
+		$path = $rcmail->config->get('storage_basepath', false).$rcmail->user->get_username().'/files';	
+		$attpath = $path.'/'.$rcmail->config->get('storage_attachments', false);		
+		if (!is_dir($attpath))
+		{
+			mkdir($attpath);         
+		}
+		
+		$uid = rcube_utils::get_input_value('_uid', rcube_utils::INPUT_POST);
+		$mbox    = rcube_utils::get_input_value('_mbox', rcube_utils::INPUT_POST);
+		$mime_id = rcube_utils::get_input_value('_part', rcube_utils::INPUT_POST);
+		
+		$message = new rcube_message($uid, $mbox);
+		
+		foreach ($message->attachments as $attachment) {
+			if($attachment->mime_id == $mime_id) {
+				list($mime_id, $index) = explode(':', $mime_id);
+				$part = $message->get_part_content($mime_id, null, true);
+				$fname = $attachment->filename;
+				
+				$myfile = fopen($attpath."/".$fname, "w") or die("Unable to open file!");
+				fwrite($myfile, $part);
+				fclose($myfile);
+			}
+        }
+		
+		$rcmail->output->command('storage/dmessage', array('message' => $fname));
+	}
+	
 	function action()
 	{
 		$rcmail = rcmail::get_instance();

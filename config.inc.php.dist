@@ -1,0 +1,10 @@
+<?php
+// relative path to elfinder
+$config['storage_url'] = 'plugins/storage/elFinder-2.1.30/roundcube.html';
+
+// absolute path to internal storage
+$config['storage_basepath'] = '/mount/some/example_hdd/';
+
+// folder where attachments should saved if requested
+$config['storage_attachments'] = 'Attachments';
+?>

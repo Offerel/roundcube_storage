@@ -7,3 +7,7 @@
 	background: url(images/storage_sel.png) 0 0px no-repeat;
 	background-size: 21px;
 }
+
+ul.toolbarmenu li span.saveatt {
+	background-position: 0 -1342px;
+}

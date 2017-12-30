@@ -2,6 +2,11 @@
 Directly integrate elFinder as App in to Roundcube with SSO. You can find elFinder at GitHub (https://github.com/Studio-42/elFinder). 
 
 # Changelog
+**v1.1.0**
+ - There is now a special connector.roundcube.php file, so that you can use this, instead of connector.minimal.php
+ - Configuration of basepath is no done in config.inc.php
+ - It's now possible to save E-Mail Attachments in the configured storage. For this, there is a new config parameter in config.inc.php to specify the right path. If this path doesn't exist, it will be created automatically.
+
 **v1.0.1**
  - I have changed the authentication. Now I use directly the Roundcube session to login and build the path for elFinder. This is more secure than my previous approach.
  - Addes skin support for classic skin 
@@ -14,9 +19,8 @@ Directly integrate elFinder as App in to Roundcube with SSO. You can find elFind
 2. Download elFinder from https://github.com/Studio-42/elFinder
 3. Extract elFinder in to the plugin directory. I have some example preconfigured files from eLfinder 2.1.30 (they end with *.example)
 4. Configure elFinder to your needs. Mostly this follows the instructions on the elFinder Source.
-5. There are preconfigured files for elfinder, which you use as a starting point. If you want make use of the Authentication, take care that you dont remove the authentication part in connector.minimal.example
-6. Rename elfinder.html.example and connector.minimal.example, so that you can use this files 
-7. Activate the plugin in /config/config.inc.php in the way that you add it to the active plugins array, like $config['plugins'] = array('storage');
+5. There is now a roundcube.html. THis file is preconfigured to work together with Roundcube
+6. Activate the plugin in /config/config.inc.php in the way that you add it to the active plugins array, like $config['plugins'] = array('storage');
 
 # Remarks
 - Login is done with the same credentials as in Roundcube.
