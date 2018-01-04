@@ -7,4 +7,7 @@ $config['storage_basepath'] = '/mount/some/example_hdd/';
 
 // folder where attachments should saved if requested
 $config['storage_attachments'] = 'Attachments';
+
+// Name of your storage
+$config['storage_name'] = 'My Files';
 ?>

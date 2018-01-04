@@ -9,5 +9,6 @@
 }
 
 ul.toolbarmenu li span.saveatt {
-	background-position: 0 -1342px;
+	background: url(images/storage-menu.png) 0 0 no-repeat;
+	background-size: 16px 16px;
 }
