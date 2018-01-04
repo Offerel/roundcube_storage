@@ -2,9 +2,13 @@
 Directly integrate elFinder as App in to Roundcube with SSO. You can find elFinder at GitHub (https://github.com/Studio-42/elFinder). 
 
 # Changelog
+**v1.2.0**
+ - You can now add files from the server storage with the hekp of elFinder.
+ - Fix for wrong path issue
+ 
 **v1.1.0**
  - There is now a special connector.roundcube.php file, so that you can use this, instead of connector.minimal.php
- - Configuration of basepath is no done in config.inc.php
+ - Configuration of basepath is now done in config.inc.php
  - It's now possible to save E-Mail Attachments in the configured storage. For this, there is a new config parameter in config.inc.php to specify the right path. If this path doesn't exist, it will be created automatically.
 
 **v1.0.1**

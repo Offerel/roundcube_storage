@@ -6,6 +6,9 @@ window.rcmail && rcmail.addEventListener('init', function(evt) {
 			rcmail.env.selected_attachment = p.id;
 		}
 	});
+	
+	var fbutton = $("#compose-attachments").contents().find("a");                
+	fbutton.after("<a class='button' tabindex='2' href='#' onclick='cform();'>elFinder</a>");
 });
 
 function save_one()
@@ -15,6 +18,22 @@ function save_one()
 }
 
 function dmessage(response)
-    {
-      alert(response.message);
-    }
+{
+  alert(response.message);
+}
+    
+function cform()
+{
+	var storage_path = rcmail.env.spath;
+	var cid = location.search.split('id=')[1];
+	var specs = "location=no,menubar=no,resizable=no,scrollbars=no,status=no,titlebar=no,toolbar=no,width=840,height=370,";
+	var elwindow = window.open(storage_path + "elopen.html?id=" + cid,"elopen",specs,false);
+}
+
+function elcallback(files,cid,tid)
+{
+	for (id in files) {
+		rcmail.http_post('storage/elattach', '_tid=' + tid + '&_cid=' + cid + '&_file=' + files[id].path);
+		}
+
+}

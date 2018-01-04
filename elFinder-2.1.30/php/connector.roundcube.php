@@ -8,6 +8,7 @@ $rcmail = rcmail::get_instance();
 
 if (!empty($rcmail->user->ID)) {
 	$path = $rcmail->config->get('storage_basepath', false).$rcmail->user->get_username().'/files';
+	$storage_name = $rcmail->user->get_username();
 	
 	// check if attachment path exists and create if not exist
 	$attpath = $path.'/'.$rcmail->config->get('storage_attachments', false);
@@ -44,7 +45,7 @@ $opts = array(
 			'driver'        => 'LocalFileSystem',           // driver for accessing file system (REQUIRED)
 			'path'          => $path,                 // path to files (REQUIRED)
 			'uploadAllow'   => array('all'),// Mimetype `image` and `text/plain` allowed to upload
-			'alias'	=> 'My Files',
+			'alias'	=> $storage_name,
 			'uploadOrder'   => array('deny', 'allow'),      // allowed Mimetype `image` and `text/plain` only
 			'accessControl' => 'access',                     // disable and hide dot starting files (OPTIONAL)
 			'tmbPath' => '/tmp',
