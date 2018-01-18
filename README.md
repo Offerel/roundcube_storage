@@ -2,6 +2,9 @@
 Directly integrate elFinder as App in to Roundcube with SSO. You can find elFinder at GitHub (https://github.com/Studio-42/elFinder). 
 
 # Changelog
+**v1.2.2**
+ - Small Bugfixes
+ 
 **v1.2.1**
  - Small fix for Classic skin
  
