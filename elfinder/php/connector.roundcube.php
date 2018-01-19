@@ -8,9 +8,18 @@ include INSTALL_PATH . 'program/include/iniset.php';
 $rcmail = rcmail::get_instance();
 
 if (!empty($rcmail->user->ID)) {
-	$path = $rcmail->config->get('storage_basepath', false).$rcmail->user->get_username().'/files';
+	$path = $rcmail->config->get('storage_basepath', false).$rcmail->user->get_username().$rcmail->config->get('storage_filespath', false);
 	$storage_name = $rcmail->config->get('storage_name', false);
-	
+
+	// if the userfolder does not exist yet, create it automatically.
+	if (!is_dir($rcmail->config->get('storage_basepath', false).$rcmail->user->get_username()))
+	{
+		mkdir($rcmail->config->get('storage_basepath', false).$rcmail->user->get_username());
+		// if there is a subfolder, create this also
+		if(strlen($rcmail->config->get('storage_filespath', false)) > 0)
+			mkdir($rcmail->config->get('storage_basepath', false).$rcmail->user->get_username().$rcmail->config->get('storage_filespath', false));
+	}
+
 	// check if attachment path exists and create if not exist
 	$attpath = $path.'/'.$rcmail->config->get('storage_attachments', false);
 	

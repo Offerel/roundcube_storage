@@ -1,9 +1,12 @@
 <?php
 // relative path to elfinder
-$config['storage_url'] = 'plugins/storage/elFinder-2.1.30/roundcube.html';
+$config['storage_url'] = 'plugins/storage/elfinder/roundcube.html';
 
-// absolute path to internal storage
+// The path to the storage is computed as follows: $config['storage_basepath'] + <Rouncube username> + $config['storage_filespath']
+// With such a path, every user has it's own folder. The folder $config['storage_filespath'] as subfolder to the users folder
+// do let you manage the files better, since you can so save additional things in this userspace.
 $config['storage_basepath'] = '/mount/some/example_hdd/';
+$config['storage_filespath'] = '/files';
 
 // folder where attachments should saved if requested
 $config['storage_attachments'] = 'Attachments';
