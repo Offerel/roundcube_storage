@@ -12,9 +12,10 @@ if (!empty($rcmail->user->ID)) {
 	$storage_name = $rcmail->config->get('storage_name', false);
 
 	// if the userfolder does not exist yet, create it automatically.
-	if (!is_dir( $rcmail->config->get('storage_basepath', false).$rcmail->user->get_username().$rcmail->config->get('storage_filespath', false) ))
+	if (!is_dir($path)
 	{
-		mkdir($rcmail->config->get('storage_basepath', false).$rcmail->user->get_username().$rcmail->config->get('storage_filespath', false), 0777, true);
+		if(!mkdir($path, 0774, true))
+			die('Subfolders for $config[\'storage_basepath\'] ($config[\'storage_folder\']) failed. Please check your directory permissions.');
 	}
 
 	// check if attachment path exists and create if not exist
@@ -22,7 +23,7 @@ if (!empty($rcmail->user->ID)) {
 	
 	if (!is_dir($attpath))
 	{
-		mkdir($attpath);         
+		mkdir($attpath, 0774, true);         
 	}
 }
 else {
