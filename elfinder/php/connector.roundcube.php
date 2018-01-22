@@ -12,10 +12,14 @@ if (!empty($rcmail->user->ID)) {
 	$storage_name = $rcmail->config->get('storage_name', false);
 
 	// if the userfolder does not exist yet, create it automatically.
-	if (!is_dir($path)
+	if (!is_dir($path))
 	{
-		if(!mkdir($path, 0774, true))
-			die('Subfolders for $config[\'storage_basepath\'] ($config[\'storage_folder\']) failed. Please check your directory permissions.');
+		if(!mkdir($path, 0774, true)) {
+			error_log('Plugin Storage: Subfolders for $config[\'storage_basepath\'] ($config[\'storage_folder\']) failed. Please check your directory permissions.');
+			die();
+		}
+		else
+			error_log('Plugin Storage: Subfolders for $config[\'storage_basepath\'] ($config[\'storage_folder\']) auto-created, since they not exists yet');
 	}
 
 	// check if attachment path exists and create if not exist
@@ -23,11 +27,13 @@ if (!empty($rcmail->user->ID)) {
 	
 	if (!is_dir($attpath))
 	{
-		mkdir($attpath, 0774, true);         
+		mkdir($attpath, 0774, true);
+		error_log('Plugin Storage: Subfolders for $config[\'storage_attachments\'] auto-created, since they not exists yet');
 	}
 }
 else {
-	die('Not logged in.');
+	error_log('Plugin Storage: Login failed. User is not logged in.');
+	die();
 }
 // Roundcube authentication finished. You can use now the $path variable as path for elFinder.
 // ------------------------------------------------------------------------------------------

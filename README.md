@@ -3,7 +3,7 @@ Directly integrate elFinder as App in to Roundcube with SSO. You can find elFind
 
 # Changelog
 **v1.2.2**
- - Small Bugfixes
+ - fix for path check
  
 **v1.2.1**
  - Small fix for Classic skin
