@@ -3,7 +3,7 @@
  * Roundcube elfinder Plugin
  * Integrate elFinder in to Roundcube
  *
- * @version 1.2.1
+ * @version 1.2.2
  * @author Offerel
  * @copyright Copyright (c) 2018, Offerel
  * @license GNU General Public License, version 3
@@ -24,10 +24,11 @@ class storage extends rcube_plugin
 		$this->add_button(array(
 			'label'	=> 'storage.storage',
 			'command'	=> 'storage',
-			'id'		=> 'stbutton',
+			'id'		=> 'ec962c3e-2322-46f4-adf0-6fa2be1b4312',
 			'class'		=> 'button-storage',
 			'classsel'	=> 'button-storage button-selected',
-			'innerclass'=> 'button-inner'
+			'innerclass'=> 'button-inner',
+			'type'		=> 'link'
 		), 'taskbar');
 
 		if ($rcmail->task == 'storage') {
@@ -38,33 +39,10 @@ class storage extends rcube_plugin
 
 		$this->register_action('save_one', array($this, 'save_one'));
 		$this->register_action('elattach', array($this, 'attach_file'));
-		//$this->register_action('add_note', array($this, 'add_nnote'));
 		
 		$rcmail->output->set_env('spath', dirname($rcmail->config->get('storage_url', false))."/");
 		$rcmail->output->set_env('elbutton', $this->gettext('loadattachment'));
-		
-		/*
-		if (!$rcmail->action) {
-            $this->plugin_submenu();
-        }
-		*/
 	}
-	/*
-	public function plugin_submenu()
-    {
-		$rcmail  = rcmail::get_instance();
-		$this->add_texts('localization/', true);
-		
-		$rcmail->output->set_env('ntitle', $this->gettext('note_title'));
-		$rcmail->output->set_env('ntags', $this->gettext('note_tags'));
-			
-		$li = '';
-		$li .= html::tag('li', null, $rcmail->output->button(array('command' => 'plugin.storage.add_note', 'type' => 'link', 'class' => 'myclass3', 'label' => 'storage.note_new')));
-		$out = html::tag('ul', array('id' => 'storage_sub'), $li);
-		$rcmail->output->add_footer(html::div(array('style' => 'display: none;'), $out));
-    }
-	*/
-	
 	
 	function add_nnote()
 	{
@@ -86,8 +64,6 @@ class storage extends rcube_plugin
 		$myfile = fopen($filename, "w") or die("Unable to open file!");
 		fwrite ($myfile, $inhalt);
 		fclose ($myfile);
-		
-		// Editor nun mit $filename öffnen
 	}
 	
 	
