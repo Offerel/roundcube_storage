@@ -7,18 +7,18 @@ include INSTALL_PATH . 'program/include/iniset.php';
 $rcmail = rcmail::get_instance();
 
 if (!empty($rcmail->user->ID)) {
-	$path = $rcmail->config->get('storage_basepath', false).$rcmail->user->get_username().$rcmail->config->get('storage_filespath', false);
+	$path = str_replace("%u", $rcmail->user->get_username(), $rcmail->config->get('storage_basepath', false));
 	$storage_name = $rcmail->config->get('storage_name', false);
 
 	// if the userfolder does not exist yet, create it automatically.
 	if (!is_dir($path))
 	{
 		if(!mkdir($path, 0774, true)) {
-			error_log('Plugin Storage: Subfolders for $config[\'storage_basepath\'] ($config[\'storage_filespath\']) failed. Please check your directory permissions.');
+			error_log('Plugin Storage: Trying to create not existing folder specified in $config[\'storage_basepath\'] failed. Please check your directory permissions.');
 			die();
 		}
 		else
-			error_log('Plugin Storage: Subfolders for $config[\'storage_basepath\'] ($config[\'storage_filespath\']) auto-created, since they not exists yet');
+			error_log('Plugin Storage: Trying to create not existing folder specified in $config[\'storage_basepath\'] failed. Please check your directory permissions.');
 	}
 
 	// check if attachment path exists and create if not exist

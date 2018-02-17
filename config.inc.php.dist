@@ -2,15 +2,16 @@
 // relative path to elfinder
 $config['storage_url'] = 'plugins/storage/elfinder/roundcube.html';
 
-// The path to the storage is computed as follows: $config['storage_basepath'] + <Rouncube username> + $config['storage_filespath']
-// With such a path, every user has it's own folder. The folder $config['storage_filespath'] as subfolder to the users folder
-// do let you manage the files better, since you can so save additional things in this userspace.
-$config['storage_basepath'] = '/mount/some/example_hdd/';
-$config['storage_filespath'] = '/files';
+// This is the absolute path to the elfinder root directory. You can use the variable %u as replacement for the Roundcube username
+$config['storage_basepath'] = '/mount/some/example_hdd/%u/files/';
 
 // folder where attachments should saved if requested
 $config['storage_attachments'] = 'Attachments';
 
 // Name of your storage
 $config['storage_name'] = 'My Files';
+
+// If you want to display the calculated path in Roundcube error.log, set this variable to true
+// If you set it to false or remove this setting, the calculated path is not shown in the logfile
+//$config['storage_debug'] = true;
 ?>

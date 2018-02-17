@@ -3,7 +3,7 @@
  * Roundcube elfinder Plugin
  * Integrate elFinder in to Roundcube
  *
- * @version 1.2.2
+ * @version 1.2.3
  * @author Offerel
  * @copyright Copyright (c) 2018, Offerel
  * @license GNU General Public License, version 3
@@ -42,30 +42,7 @@ class storage extends rcube_plugin
 		
 		$rcmail->output->set_env('spath', dirname($rcmail->config->get('storage_url', false))."/");
 		$rcmail->output->set_env('elbutton', $this->gettext('loadattachment'));
-	}
-	
-	function add_nnote()
-	{
-		$title = rcube_utils::get_input_value('_title', rcube_utils::INPUT_POST);
-		$tag_arr = preg_split ('/[\s*,\s*]*,+[\s*,\s*]*/', rcube_utils::get_input_value('_tags', rcube_utils::INPUT_POST));
-		$tag_str = implode(",", $tag_arr);
-		
-		$inhalt = "<html><head><title>$title</title><meta name=\"keywords\" content=\"$tag_str\" /><meta name=\"author\" content=\"Sebastian Pfohl\" /></head><body></body></html>";
-		
-		$path = $rcmail->config->get('storage_basepath', false).$rcmail->user->get_username().'/files';	
-		$notespath = $path.'/'.$rcmail->config->get('storage_notes', false);		
-		if (!is_dir($notespath))
-		{
-			mkdir($notespath);         
-		}
-		
-		$filepath = $notespath."test.html";
-		
-		$myfile = fopen($filename, "w") or die("Unable to open file!");
-		fwrite ($myfile, $inhalt);
-		fclose ($myfile);
-	}
-	
+	}	
 	
 	public function add_saveatt_link($p)
     {
@@ -86,8 +63,8 @@ class storage extends rcube_plugin
 	public function save_one($args)
 	{
 		$rcmail = rcmail::get_instance();
+		$path = str_replace("%u", $rcmail->user->get_username(), $rcmail->config->get('storage_basepath', false));
 		
-		$path = $rcmail->config->get('storage_basepath', false).$rcmail->user->get_username().'/files';	
 		$attpath = $path.'/'.$rcmail->config->get('storage_attachments', false);		
 		if (!is_dir($attpath))
 		{
@@ -153,7 +130,7 @@ class storage extends rcube_plugin
 		  die("Invalid session var!");
 		}
 
-		$elpath = $rcmail->config->get('storage_basepath', false).$rcmail->user->get_username().'/files'.substr($filepath, strpos($filepath, "/"));
+		$elpath = str_replace("%u", $rcmail->user->get_username(), $rcmail->config->get('storage_basepath', false)).substr($filepath, strpos($filepath, "/"));
 		$rcmail->output->reset();
 
 		if (is_file($elpath)) {
