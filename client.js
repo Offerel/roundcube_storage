@@ -10,14 +10,6 @@ window.rcmail && rcmail.addEventListener('init', function(evt) {
 	
 	var fbutton = $("#compose-attachments").contents().find("a.button");                
 	fbutton.after("<a class='button' tabindex='2' href='#' onclick='cform();'>" + rcmail.env.elbutton + "</a>");
-	/*
-	//var menu = rcm_callbackmenu_init({menu_name: 'storagemenu', menu_source: '#storage_sub'});
-	
-	$(stbutton).on("contextmenu", function(e)
-		{
-			rcm_show_menu(e, this, stbutton, menu);
-		});
-	*/
 });
 
 function save_one()
@@ -34,10 +26,8 @@ function add_note()
 	if (title == null || title == "") {
         return;
     } else {
-        //txt = "Hello " + title + "! How are you today?";
 		rcmail.http_post('storage/add_note', '_title=' + urlencode(title) + '&_tags=' + urlencode(tags));
     }
-    //document.getElementById("demo").innerHTML = txt;
 }
 
 function dmessage(response)

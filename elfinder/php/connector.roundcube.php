@@ -1,5 +1,4 @@
 <?php
-
 error_reporting(0); // Set E_ALL for debuging
 // This part is needed to use the Roundcube Session for authentication. Don't remove this !!!
 // ------------------------------------------------------------------------------------------
@@ -38,6 +37,8 @@ else {
 // Roundcube authentication finished. You can use now the $path variable as path for elFinder.
 // ------------------------------------------------------------------------------------------
 
+if($rcmail->config->get('storage_debug'))
+	error_log("Calculated path: ".$path);
 
 // elFinder autoload
 require './autoload.php';
@@ -60,11 +61,15 @@ $opts = array(
 			'driver'        => 'LocalFileSystem',           // driver for accessing file system (REQUIRED)
 			'path'          => $path,                 // path to files (REQUIRED)
 			'uploadAllow'   => array('all'),// Mimetype `image` and `text/plain` allowed to upload
-			'alias'	=> $storage_name,
+			'alias'			=> $storage_name,
 			'uploadOrder'   => array('deny', 'allow'),      // allowed Mimetype `image` and `text/plain` only
 			'accessControl' => 'access',                     // disable and hide dot starting files (OPTIONAL)
-			'tmbPath' => '/tmp',
-			'quarantine' => '/tmp'
+			//'tmbPath' 		=> '/media/stick/www/html/tmb',
+			//'tmbURL'		=> '/tmb',
+			//'tmbCrop'		=> true,
+			//'imgLib'		=> 'gd',
+			//'tmbSize'		=> 48,
+			'quarantine' 	=> '/tmp'
 		)
 	)
 );
@@ -72,4 +77,3 @@ $opts = array(
 // run elFinder
 $connector = new elFinderConnector(new elFinder($opts));
 $connector->run();
-
