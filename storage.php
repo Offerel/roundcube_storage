@@ -10,7 +10,7 @@
  */
 class storage extends rcube_plugin
 {
-	public $task = '.*';
+	public $task = '?(?!login|logout).*';
 
 	public function init()
 	{
