@@ -9,16 +9,17 @@ $rcmail = rcmail::get_instance();
 if (!empty($rcmail->user->ID)) {
 	$path = str_replace("%u", $rcmail->user->get_username(), $rcmail->config->get('storage_basepath', false));
 	$storage_name = $rcmail->config->get('storage_name', false);
+	
+	if($rcmail->config->get('storage_debug'))
+		error_log("Calculated path: ".$path);
 
 	// if the userfolder does not exist yet, create it automatically.
 	if (!is_dir($path))
 	{
 		if(!mkdir($path, 0774, true)) {
-			error_log('Plugin Storage: Trying to create not existing folder specified in $config[\'storage_basepath\'] failed. Please check your directory permissions.');
+			error_log('Plugin Storage: Trying to create not existing folder specified in $config[\'storage_basepath\'] ("'.$path.'") failed. Please check your directory permissions.');
 			die();
 		}
-		else
-			error_log('Plugin Storage: Trying to create not existing folder specified in $config[\'storage_basepath\'] failed. Please check your directory permissions.');
 	}
 
 	// check if attachment path exists and create if not exist
@@ -36,9 +37,6 @@ else {
 }
 // Roundcube authentication finished. You can use now the $path variable as path for elFinder.
 // ------------------------------------------------------------------------------------------
-
-if($rcmail->config->get('storage_debug'))
-	error_log("Calculated path: ".$path);
 
 // elFinder autoload
 require './autoload.php';
@@ -64,7 +62,7 @@ $opts = array(
 			'alias'			=> $storage_name,
 			'uploadOrder'   => array('deny', 'allow'),      // allowed Mimetype `image` and `text/plain` only
 			'accessControl' => 'access',                     // disable and hide dot starting files (OPTIONAL)
-			//'tmbPath' 		=> '/media/stick/www/html/tmb',
+			'tmbPath' 		=> '/tmp',
 			//'tmbURL'		=> '/tmb',
 			//'tmbCrop'		=> true,
 			//'imgLib'		=> 'gd',
