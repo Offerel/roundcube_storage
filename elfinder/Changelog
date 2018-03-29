@@ -1,3 +1,103 @@
+2018-03-28  Naoki Sawada  <hypweb+elfinder@gmail.com>
+
+	* elFinder (2.1.37):
+		- [php:security] re-fix directory traversal vulnerability for windows server
+
+
+2018-03-28  Naoki Sawada  <hypweb+elfinder@gmail.com>
+
+	* elFinder (2.1.36):
+		- [js:core] Fixed #2433 cwdOptions becomes trash folder's options when folder restoring
+		- [php:plugin:sanitizer] add on option `callBack` (#2432)
+		- [ui:uploadbutton] Fixed #2435 can't upload
+		- [cmd:upload] Fixed #2436 can’t upload with state that one file selected in cwd
+		- [VD:abstract] Fixed #2425 adjustment of `internal_encoding` setting
+		- [php:security] correction of symbolic link determination
+		- [cmd:rename] bugfix of undo/redo functions
+		- [php:plugin] add option onDropWith for plugin function iaEnabled (#2442)
+		- [cmd:paste] Fixed #2439 missing `src` param on API < 2.1
+		- [proxy:Ver1] correction of response data normalization on paste
+		- [php:security] fix directory traversal vulnerability
+		- And some minor bug fixes
+
+
+2018-03-21  Naoki Sawada  <hypweb+elfinder@gmail.com>
+
+	* elFinder (2.1.35):
+		- [cmd:upload] notify progress data to dfrd.progress in uploading
+		- [VD:LocalFileSystem,OneDrive] fix wrong result of isNameExists()
+		- [ui:dialog] Fixed #2431 form elements can not get focus with mouse down
+		- And some minor bug fixes
+
+
+2018-03-18  Naoki Sawada  <hypweb+elfinder@gmail.com>
+
+	* elFinder (2.1.34):
+		- [VD:abstract] Fixed #2423 no longer running under PHP < 5.4
+		- [cmd:mkdir] Fixed #2422 bugfix of behavior of mkdir on navbar
+		- And some minor bug fixes
+
+
+2018-03-14  Naoki Sawada  <hypweb+elfinder@gmail.com>
+
+	* elFinder (2.1.33):
+		- [cmd:upload] Fixed #2379 icon of target folder list is not shown
+		- [js:core] Fixed #2378 sometime can't upload from directory selector
+		- [cmd:edit] Fixed #2381 trigger event "editEditorPrepare" before build editor
+		- [cmd:edit] Fixed #2382 can't reopen editor on return from canceling SaveAs from cancel action
+		- [cmd:edit] Fixed #2383 can't use CodeMirror, SimpleMDE with require.js
+		- [VD:MySQL] Fixed #2384 infinitely loop on search if root has parent_id
+		- [js:extras:editors] add CKEditor5 editor
+		- [js,css] Fixed #2390 optimization to mobile devices
+		- [cmd:search] Fixed #2392 broken search design in current nightlty
+		- [php:core] Fixed #2393 strange corruption of PHP internal_encoding
+		- [js] Fixed #2401 remove deprecated functions of jQuery
+		- [js] Fixed #2401 change `on('hover')` to `on('mouseenter mouseleave')`
+		- [php:core] Fixed #2402 add an option `memoryLimitGD` to connector main options
+		- [js:core] Fixed #2403 backward compatibility with API 2.0 is broken
+		- [cmd:edit] Fixed #2405 mount the zip archive to edit archive contents
+		- [VD:abstract] Fixed #2407 include the leaf root into search results
+		- [VD:abstract] Fixed #2408 have the generic archive function for remote volume
+		- [js:core] optimization of handling of leafRoots
+		- [cmd:netmount] also unmount volumes included in volume to be unmounted
+		- [i18n:LANG] add 'reflectOnImmediate','reflectOnUnmount','unmountChildren'
+		- [cmd:netmount] follow the tree in reverse and unmount them in order
+		- [php:core] add 'netmount' to `sessionUseCmds` for handle requests synchronously on unmount
+		- [VD:Group] correction of `dirs` result of root stat
+		- [VD] allow uploading all file types to the net mount volume
+		- [cmd:quicklook] add the MarkDown viewer with marked.js
+		- [js:core] Fixed #2413 problem that unnecessary "remove" event fires on upload
+		- [cmd:info] show the md5, sha256 contents hashes
+		- [cmd:help] add preference "Algorithms to show the file hash"
+		- [js:rename] Fixed #2419 allow rename of the volume root name
+		- And some minor bug fixes
+
+
+2018-02-07  Naoki Sawada  <hypweb+elfinder@gmail.com>
+
+	* elFinder (2.1.32):
+		- [js:extras:editors.default] Fixed problem of initial widh of Zoho editor
+		- [cmd:quicklook] Fixed #2346 conflict of `update` event with prototype.js
+		- [php:core] Fixed #2345 aFixeddd the warning about object injection attacks
+		- [VD:Dropbox2] Fixed #2348 edit File not respecting filename capitalization
+		- [js:extras:editors] Fixed #2319 supports local CKEditor
+		- [js:core] bugfix of sort by timestamp about unknown values
+		- [ui:dialog] Fixed size restoration problem from maximized dialog
+		- [ui:dialog] bugfix of when closes editing dialog of maximized
+		- [VD:abstract] Fixed #2352 problem of detect MIME-Type as 'unknown' with the empty file
+		- [cmd:open] Fixed #2359 can't open with "open" of "Action when select file"
+		- [VD:abstract] update `mimeMap` of default options
+		- [VD:TrashMySQL] add a new volume "TrashMySQL"
+		- [php:core] Fixed #2365 make custom data controllable from the connector side
+		- [VD:MySQL] bugfix that it was not possible to set as root path other than the root id
+		- [api:put] allow puts by the self item hash
+		- [i18n] correction of confirm message when duplicate upload
+		- [i18n] Fixed #2369 modify wording of 'confirmRepl'
+		- [cmd:help] Fixed #2370 add "Column setting" to Preferences tab
+		- [i18n:LANG] add `'columnPref': 'Columns settings (List view)'`
+		- And some minor bug fixes
+
+
 2017-12-27  Naoki Sawada  <hypweb+elfinder@gmail.com>
 
 	* elFinder (2.1.31):

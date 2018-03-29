@@ -2,9 +2,8 @@
  * Polski translation
  * @author Marcin Mikołajczyk <marcin@pjwstk.edu.pl>
  * @author Wojciech Jabłoński <www.jablonski@gmail.com>
+ * @version 2018-03-17
  * @author Bogusław Zięba <bobi@poczta.fm>
- * @author Bogusław Zięba <bobi@poczta.fm>
- * @version 2017-11-30
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -440,6 +439,18 @@
 			'selectAction'    : 'Działanie po wybraniu pliku', // from v2.1.30 added 23.11.2017
 			'useStoredEditor' : 'Otwórz za pomocą ostatnio używanego edytora', // from v2.1.30 added 23.11.2017
 			'selectinvert'    : 'Odwróć zaznaczenie', // from v2.1.30 added 25.11.2017
+			'renameMultiple'  : 'Czy na pewno chcesz zmienić nazwę $1 wybranych elementów takich jak $2?<br/>Tego nie da się cofnąć!', // from v2.1.31 added 4.12.2017
+			'batchRename'     : 'Zmień partiami', // from v2.1.31 added 8.12.2017
+			'plusNumber'      : '+ Liczba', // from v2.1.31 added 8.12.2017
+			'asPrefix'        : 'Dodaj prefix', // from v2.1.31 added 8.12.2017
+			'asSuffix'        : 'Dodaj suffix', // from v2.1.31 added 8.12.2017
+			'changeExtention' : 'Zmień rozszerzenie', // from v2.1.31 added 8.12.2017
+			'columnPref'      : 'Ustawienia kolumn (Widok listy)', // from v2.1.32 added 6.2.2018
+			'reflectOnImmediate' : 'Wszystkie zmiany widoczne natychmiast w archiwum.', // from v2.1.33 added 2.3.2018
+			'reflectOnUnmount'   : 'Wszelkie zmiany nie będą widoczne, dopóki nie odłączysz tego woluminu.', // from v2.1.33 added 2.3.2018
+			'unmountChildren' : 'Następujący wolumin (y), zamontowany na tym urządzeniu również niezamontowany. Czy na pewno chcesz go odmontować?', // from v2.1.33 added 5.3.2018
+			'selectionInfo'   : 'Informacje Wyboru', // from v2.1.33 added 7.3.2018
+			'hashChecker'     : 'Algorytmy do pokazywania hash pliku', // from v2.1.33 added 10.3.2018
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Nieznany',
@@ -525,4 +536,3 @@
 		}
 	};
 }));
-

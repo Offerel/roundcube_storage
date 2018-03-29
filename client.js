@@ -8,7 +8,7 @@ window.rcmail && rcmail.addEventListener('init', function(evt) {
 		}
 	});
 	
-	var fbutton = $("#compose-attachments").contents().find("a.button");                
+	var fbutton = $("#compose-attachments").contents().find(".button");                
 	fbutton.after("<a class='button' tabindex='2' href='#' onclick='cform();'>" + rcmail.env.elbutton + "</a>");
 });
 
