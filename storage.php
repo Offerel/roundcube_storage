@@ -34,14 +34,18 @@ class storage extends rcube_plugin
 		if ($rcmail->task == 'storage') {
 			$this->register_action('index', array($this, 'action'));
 		}
+		
+		if ($rcmail->task == 'mail') {
+			$rcmail->output->set_env('spath', dirname($rcmail->config->get('storage_url', false))."/");
+			$rcmail->output->set_env('elbutton', $this->gettext('loadattachment'));
+		}
 
 		$this->add_hook('template_container', array($this, 'add_saveatt_link'));
 
 		$this->register_action('save_one', array($this, 'save_one'));
 		$this->register_action('elattach', array($this, 'attach_file'));
 		
-		$rcmail->output->set_env('spath', dirname($rcmail->config->get('storage_url', false))."/");
-		$rcmail->output->set_env('elbutton', $this->gettext('loadattachment'));
+		
 	}	
 	
 	public function add_saveatt_link($p)
@@ -93,7 +97,8 @@ class storage extends rcube_plugin
 	
 	function action()
 	{
-		$rcmail = rcmail::get_instance();	
+		$rcmail = rcmail::get_instance();
+
 		$rcmail->output->add_handlers(array('storagecontent' => array($this, 'content'),));
 		$rcmail->output->set_pagetitle($this->gettext('storage'));
 		$rcmail->output->send('storage.storage');
@@ -102,6 +107,7 @@ class storage extends rcube_plugin
 	function content($attrib)
 	{
 		$rcmail = rcmail::get_instance();
+		//$this->include_script('client.js');		
 		$src = $rcmail->config->get('storage_url', false);
 
 		$attrib['src'] = $src;
