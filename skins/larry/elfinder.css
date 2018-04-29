@@ -1,7 +1,9 @@
 #taskbar a.button-storage span.button-inner {
 	background: url(images/storage002.png) no-repeat;
+	/*
 	width: 25px !important;
 	height: 23px !important;
+	*/
 	background-position: 0px 0px;
 	display: inline-block;
 }
