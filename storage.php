@@ -44,8 +44,6 @@ class storage extends rcube_plugin
 
 		$this->register_action('save_one', array($this, 'save_one'));
 		$this->register_action('elattach', array($this, 'attach_file'));
-		
-		
 	}	
 	
 	public function add_saveatt_link($p)
