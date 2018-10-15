@@ -1,6 +1,13 @@
+/**
+ * Roundcube elfinder Plugin
+ *
+ * @version 1.4.0
+ * @author Offerel
+ * @copyright Copyright (c) 2018, Offerel
+ * @license GNU General Public License, version 3
+ */
 window.rcmail && rcmail.addEventListener('init', function(evt) {
 	rcmail.register_command('plugin.storage.save_one', save_one, true);
-	rcmail.register_command('plugin.storage.add_note', add_note, true);
 
 	rcmail.addEventListener('beforemenu-open', function(p) {
 		if (p.menu == 'attachmentmenu') {
@@ -8,26 +15,16 @@ window.rcmail && rcmail.addEventListener('init', function(evt) {
 		}
 	});
 	
-	var fbutton = $("#compose-attachments").contents().find(".button");                
+	var fbutton = $("#compose-attachments").contents().find(".button");
 	fbutton.after("<a class='button' tabindex='2' href='#' onclick='cform();'>" + rcmail.env.elbutton + "</a>");
+	
+	$("#compose-attachments").contents().find("button").after("<button class='btn btn-secondary attach' tabindex='3' href='#' style='margin-left: 5px;' onclick='cform();'>" + rcmail.env.elbutton + "</button>");
 });
 
 function save_one()
 {
 	var part = rcmail.env.selected_attachment;
 	rcmail.http_post('storage/save_one', '_mbox=' + urlencode(rcmail.env.mailbox) + '&_uid=' + rcmail.env.uid + '&_part=' + part);
-}
-
-function add_note()
-{
-	var title = prompt(rcmail.env.ntitle, '');
-	var tags = prompt(rcmail.env.ntags, '');
-    
-	if (title == null || title == "") {
-        return;
-    } else {
-		rcmail.http_post('storage/add_note', '_title=' + urlencode(title) + '&_tags=' + urlencode(tags));
-    }
 }
 
 function dmessage(response)
