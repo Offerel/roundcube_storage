@@ -17,8 +17,8 @@ class storage extends rcube_plugin
 		$rcmail = rcmail::get_instance();
 		$this->load_config();
 		$this->add_texts('localization/', true);
-		$this->include_stylesheet($this->local_skin_path() . '/elfinder.css');
-		$this->include_script('client.js');
+		$this->include_stylesheet($this->local_skin_path() . '/elfinder.min.css');
+		$this->include_script('client.min.js');
 		$this->register_task('storage');
 
 		$this->add_button(array(
@@ -90,13 +90,11 @@ class storage extends rcube_plugin
 				fclose($myfile);
 			}
         }
-		//$rcmail->output->command('storage/dmessage', array('message' => 'The File '.$fname.' is saved.'));
 	}
 	
 	function action()
 	{
 		$rcmail = rcmail::get_instance();
-
 		$rcmail->output->add_handlers(array('storagecontent' => array($this, 'content'),));
 		$rcmail->output->set_pagetitle($this->gettext('storage'));
 		$rcmail->output->send('storage.storage');
