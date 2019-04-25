@@ -2,13 +2,12 @@
 <html style="height: 100%;">
 	<head>
 		<meta charset="utf-8">
-		<title>elFinder 2.1.x source version with PHP connector</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
 
 		<!-- Require JS (REQUIRED) -->
 		<!-- Rename "main.default.js" to "main.js" and edit it if you need configure elFInder options or any things -->
-		<!-- <script data-main="./main.js" src="js/require.min.js"></script> -->
-		<script data-main="main.min.js" src="js/require.min.js"></script>
+		<!-- <script data-main="./main.js" src="js/require.min.js"></script>  -->
+		<script data-main="main.js" src="js/require.min.js"></script>
 		<script>
 			define('elFinderConfig', {
 				// elFinder options (REQUIRED)
@@ -28,11 +27,9 @@
 								'resize', 'sort',  'chmod', 'colwidth'
 								]
 					,uiOptions : {
-						// toolbar configuration
 						toolbar : [
 							['back', 'forward'],
 							['reload'],
-							// ['home', 'up'],
 							['mkdir', 'mkfile'],
 							['open', 'download'],
 							['info'],

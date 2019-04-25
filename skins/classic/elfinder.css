@@ -16,3 +16,10 @@ ul.toolbarmenu li #attachmentmenusave {
 ul.toolbarmenu li span.saveatt {
 	margin-left: -9px;
 }
+#pluginbody {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
