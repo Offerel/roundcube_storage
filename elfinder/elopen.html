@@ -11,7 +11,7 @@
 			if (lng == 'ja') lng = 'jp';
 			else if (lng == 'pt') lng = 'pt_BR';
 			else if (lng == 'zh') lng = (full_lng.substr(0,5) == 'zh-tw')? 'zh_TW' : 'zh_CN';
-
+			
 			define('elFinderConfig', {
 				// elFinder options (REQUIRED)
 				// Documentation for client options:
@@ -24,16 +24,17 @@
 					,reloadClearHistory: true
 					,useBrowserHistory: false
 					,requestType: 'post'
+					,defaultView: 'icons'
+					,ui: ['tree', 'stat']
 					,commands: [
-								'open', 'opendir', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook', 
-								'download', 'rm', 'duplicate', 'rename', 'mkdir', 'mkfile', 'upload', 'copy', 
-								'cut', 'paste', 'edit', 'extract', 'archive', 'search', 'info', 'view', 'help',
-								'resize', 'sort',  'chmod', 'colwidth'
+								'open', 'opendir'
 								]
 					,uiOptions : {
+						// toolbar configuration
 						toolbar : [
 							['back', 'forward'],
 							['reload'],
+							// ['home', 'up'],
 							['mkdir', 'mkfile'],
 							['open', 'download'],
 							['info'],
@@ -43,7 +44,7 @@
 							['duplicate', 'rename', 'edit'],
 							['extract', 'archive'],
 							['search'],
-							['view'],['help']
+							['view']
 						],
 
 						// directories tree options
@@ -56,8 +57,8 @@
 
 						// navbar options
 						navbar : {
-							minWidth : 100,
-							maxWidth : 200
+							minWidth : 190,
+							maxWidth : 190
 						},
 
 						// current working directory options
@@ -76,12 +77,39 @@
 								// uses self location with the empty value
 								managerUrl : ''
 							}
-							,dialogWidth: 920
+						}
+						,getfile : {
+							oncomplete : 'destroy'
+							,multiple : true
+							,folders : false
 						}
 						,quicklook : {
 							// to enable preview with Google Docs Viewer
 							googleDocsMimes : ['application/pdf', 'image/tiff', 'application/vnd.ms-office', 'application/msword', 'application/vnd.ms-word', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
 						}
+					}
+/*					,getFileCallback: function(file) {
+						var cid = location.search.split('id=')[1];
+						window.opener.elcallback(file.path,cid);
+						window.close();
+					}
+					*/
+					,getFileCallback : function(files) {
+						//for (id in files) {
+							var cid = location.search.split('id=')[1];
+							//var lock = rcmail.set_busy(true, 'elfinder.wait_load');
+							var tid = new Date().getTime();
+							window.opener.elcallback(files,cid,tid);
+							/*
+							rcmail.http_request('plugin.elfinder.load_attachments',
+								{ _id:rcmail.env.compose_id,
+								_uploadid:tid,
+								_filepath:files[id].url,
+								}, lock);
+							*/
+						//}
+						//displayed = false;
+						window.close();
 					}
 					// bootCalback calls at before elFinder boot up 
 					,bootCallback : function(fm, extraObj) {
@@ -89,25 +117,7 @@
 						fm.bind('init', function() {
 							// any your code
 						});
-						// for example set document.title dynamically.
-						var title = document.title;
-						fm.bind('open', function() {
-							var path = '',
-								cwd  = fm.cwd();
-							if (cwd) {
-								path = fm.path(cwd.hash) || null;
-							}
-							document.title = path? path + ':' + title : title;
-						}).bind('destroy', function() {
-							document.title = title;
-						});
-						// maximize editor dialog
-						fm.bind('dialogopened', function(e) {
-							var dialog = e.data.dialog;
-							if (dialog.hasClass('elfinder-dialog-edit')) {
-								dialog.find('.elfinder-titlebar-button.elfinder-titlebar-full').trigger('mousedown');
-							}
-						});
+						
 					}
 				},
 				managers : {
@@ -117,7 +127,7 @@
 						// for editor etc.
 						ace        : null, // or your location
 						codemirror : null, // or your location
-						ckeditor   : 'js/ckeditor',
+						ckeditor   : null,
 						tinymce    : null, // or your location
 						simplemde  : null, // or your location
 						// for quicklook etc.
@@ -131,7 +141,6 @@
 					}
 					}
 				}
-				}
-			);
+			});
 		</script>
 	</head><body style="margin: 0px; padding: 0px; overflow: hidden; height: 100%;"><div id="elfinder" style="margin: auto; min-height:100%; height: auto !important; height: 100%; border:0;"></div></body></html>
