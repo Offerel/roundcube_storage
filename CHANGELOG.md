@@ -1,6 +1,6 @@
 ### v1.4.3
 - Fix and customization for Roundcube 1.4 RC2
-- Added CHANGELOG.md to release
+- Added CHANGELOG.md to release 
 
 ### v1.4.2
 - Fix for missing elopen.html
