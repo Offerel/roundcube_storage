@@ -11,3 +11,12 @@
 .toolbarmenu li a.savelink::before {
 	content: "\f0a0";
 }
+#content {
+	width: 100%;
+}
+.iframe-wrapper {
+	height: 100%;
+}
+#pluginbody {
+	height: 100%;
+}
