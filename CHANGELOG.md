@@ -1,3 +1,7 @@
+### v1.4.4
+- Added ACE Editor as code editor
+- Changed elFinder to 1.4.50
+
 ### v1.4.3
 - Fix and customization for Roundcube 1.4 RC2
 - Added CHANGELOG.md to release
