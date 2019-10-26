@@ -33,6 +33,7 @@ class storage extends rcube_plugin
 
 		if ($rcmail->task == 'storage') {
 			$this->register_action('index', array($this, 'action'));
+			$rcmail->output->set_env('refresh_interval', 0);
 		}
 		
 		if ($rcmail->task == 'mail') {
