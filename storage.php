@@ -63,7 +63,7 @@ class storage extends rcube_plugin
         return $p;
     }
 
-	public function save_one($args)
+	public function save_one()
 	{
 		$rcmail = rcmail::get_instance();
 		$path = str_replace("%u", $rcmail->user->get_username(), $rcmail->config->get('storage_basepath', false));
