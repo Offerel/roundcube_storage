@@ -1,8 +1,10 @@
 ### v1.4.4
-- Added ACE Editor as code editor
-- Remove refresh, when plugin is active
-- Changed elFinder to 1.4.50
+- Updated ACE Editor to 1.4.10
+- Updated elFinder to 2.1.56
+- Remove refresh, when storage plugin is active
+- Fix for RC 1.4.x final
 - Fix elFinder CodeMirror implementation
+- Fix for save attachments
 
 ### v1.4.3
 - Fix and customization for Roundcube 1.4 RC2
