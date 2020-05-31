@@ -4,6 +4,7 @@ error_reporting(0); // Set E_ALL for debuging
 // ------------------------------------------------------------------------------------------
 define('INSTALL_PATH', realpath(__DIR__ . '/../../../../') . '/');
 include INSTALL_PATH . 'program/include/iniset.php';
+define('ELFINDER_DISABLE_ONLINE_CONVERT', true); // set `true` to disable Online converter
 $rcmail = rcmail::get_instance();
 
 if (!empty($rcmail->user->ID)) {
@@ -54,23 +55,25 @@ function access($attr, $path, $data, $volume, $isDir, $relpath) {
 $opts = array(
 	//'debug' => true,
 	'roots' => array(
-		// Items volume
 		array(
-			'driver'        => 'LocalFileSystem',           // driver for accessing file system (REQUIRED)
-			'path'          => $path,                 // path to files (REQUIRED)
-			'uploadAllow'   => array('all'),// Mimetype `image` and `text/plain` allowed to upload
+			'driver'        => 'LocalFileSystem',
+			'path'          => $path,
+			'uploadAllow'   => array('all'),
 			'alias'			=> $storage_name,
-			'uploadOrder'   => array('deny', 'allow'),      // allowed Mimetype `image` and `text/plain` only
-			'accessControl' => 'access',                     // disable and hide dot starting files (OPTIONAL)
-			'tmbPath' 		=> '/tmp',
-			//'tmbURL'		=> '/tmb',
-			//'tmbCrop'		=> true,
-			//'imgLib'		=> 'gd',
-			//'tmbSize'		=> 48,
+			'uploadOrder'   => array('deny', 'allow'),
+			'accessControl' => 'access',
+			'tmbPath' 		=> '/tmp/elfindertmb',
+			'tmbURL'        => 'self',
+			'imglib'        => 'auto',
 			'quarantine' 	=> '/tmp'
 		)
 	)
 );
+
+$local_config = "local_config.php";
+if(file_exists($local_config)) {
+	include($local_config);
+}
 
 // run elFinder
 $connector = new elFinderConnector(new elFinder($opts));

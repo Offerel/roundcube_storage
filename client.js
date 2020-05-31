@@ -1,7 +1,7 @@
 /**
  * Roundcube elfinder Plugin
  *
- * @version 1.4.3
+ * @version 1.4.4
  * @author Offerel
  * @copyright Copyright (c) 2018, Offerel
  * @license GNU General Public License, version 3

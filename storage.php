@@ -3,7 +3,7 @@
  * Roundcube elfinder Plugin
  * Integrate elFinder in to Roundcube
  *
- * @version 1.4.3
+ * @version 1.4.4
  * @author Offerel
  * @copyright Copyright (c) 2018, Offerel
  * @license GNU General Public License, version 3
@@ -33,6 +33,7 @@ class storage extends rcube_plugin
 
 		if ($rcmail->task == 'storage') {
 			$this->register_action('index', array($this, 'action'));
+			$rcmail->output->set_env('refresh_interval', 0);
 		}
 		
 		if ($rcmail->task == 'mail') {
@@ -62,7 +63,7 @@ class storage extends rcube_plugin
         return $p;
     }
 
-	public function save_one($args)
+	public function save_one()
 	{
 		$rcmail = rcmail::get_instance();
 		$path = str_replace("%u", $rcmail->user->get_username(), $rcmail->config->get('storage_basepath', false));

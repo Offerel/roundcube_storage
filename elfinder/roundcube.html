@@ -75,8 +75,11 @@
 								// browsing manager URL for CKEditor, TinyMCE
 								// uses self location with the empty value
 								managerUrl : ''
-							}
-							,dialogWidth: 920
+							},
+							dialogWidth: 920,
+							shortcuts: [{
+								pattern : 'ctrl+e f4'
+							}]
 						}
 						,quicklook : {
 							// to enable preview with Google Docs Viewer
@@ -115,9 +118,10 @@
 					'elfinder': { 
 						cdns : {
 						// for editor etc.
-						ace        : null, // or your location
+						ace        : 'js/ace', // or your location
 						codemirror : null, // or your location
-						ckeditor   : 'js/ckeditor',
+						ckeditor   : null,
+						ckeditor5  : null, 
 						tinymce    : null, // or your location
 						simplemde  : null, // or your location
 						// for quicklook etc.
