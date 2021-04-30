@@ -21,7 +21,7 @@
 					,url : 'php/connector.roundcube.php' // connector URL (REQUIRED)
 					,resizable: false
 					,rememberLastDir: false
-					,reloadClearHistory: true
+					,reloadClearHistory: false
 					,useBrowserHistory: false
 					,requestType: 'post'
 					,commands: [
@@ -32,8 +32,7 @@
 								]
 					,uiOptions : {
 						toolbar : [
-							['back', 'forward'],
-							['reload'],
+							['up', 'back', 'forward', 'reload'],
 							['mkdir', 'mkfile'],
 							['open', 'download'],
 							['info'],
@@ -45,13 +44,20 @@
 							['search'],
 							['view'],['help']
 						],
-
+                        toolbarExtra : {
+                            // also displays the text label on the button (true / false / 'none')
+                            displayTextLabel: false,
+			                // Initial setting value of hide button in toolbar setting
+                            defaultHides: ['home'],
+                            // show Preference button into contextmenu of the toolbar (true / false)
+                            preferenceInContextmenu: false
+                        },
 						// directories tree options
 						tree : {
 							// expand current root on init
 							openRootOnLoad : true,
 							// auto load current dir parents
-							syncTree : true
+							syncTree : false
 						},
 
 						// navbar options
@@ -63,7 +69,7 @@
 						// current working directory options
 						cwd : {
 							// display parent directory in listing as ".."
-							oldSchool : false
+							oldSchool : true
 						}
 					}
 					,commandsOptions : {
@@ -78,7 +84,7 @@
 							},
 							dialogWidth: 920,
 							shortcuts: [{
-								pattern : 'ctrl+e f4'
+								pattern : 'f4 ctrl+e'
 							}]
 						}
 						,quicklook : {
@@ -91,6 +97,15 @@
 						/* any bind functions etc. */
 						fm.bind('init', function() {
 							// any your code
+						}).bind('editEditorPrepare', function(e){
+							if(data.id === 'aceeditor') {
+								data.instance.setOptions({
+									theme: 'ace/theme/xcode',
+									wrap: false,
+									keybinding: 'vscode',
+									enableLiveAutocompletion: true
+								});
+							}
 						});
 						// for example set document.title dynamically.
 						var title = document.title;

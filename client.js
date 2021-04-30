@@ -1,9 +1,9 @@
 /**
  * Roundcube elfinder Plugin
  *
- * @version 1.4.4
+ * @version 1.4.5
  * @author Offerel
- * @copyright Copyright (c) 2018, Offerel
+ * @copyright Copyright (c) 2021, Offerel
  * @license GNU General Public License, version 3
  */
 window.rcmail && rcmail.addEventListener('init', function(evt) {

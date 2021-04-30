@@ -47,8 +47,7 @@ class storage extends rcube_plugin
 		$this->register_action('elattach', array($this, 'attach_file'));
 	}	
 	
-	public function add_saveatt_link($p)
-    {
+	public function add_saveatt_link($p) {
         if ($p['name'] == 'attachmentmenu') {
             $link = $this->api->output->button(array(
                 'type' => 'link',
@@ -63,8 +62,7 @@ class storage extends rcube_plugin
         return $p;
     }
 
-	public function save_one()
-	{
+	public function save_one()	{
 		$rcmail = rcmail::get_instance();
 		$path = str_replace("%u", $rcmail->user->get_username(), $rcmail->config->get('storage_basepath', false));
 		
@@ -93,18 +91,15 @@ class storage extends rcube_plugin
         }
 	}
 	
-	function action()
-	{
+	function action() {
 		$rcmail = rcmail::get_instance();
 		$rcmail->output->add_handlers(array('storagecontent' => array($this, 'content'),));
 		$rcmail->output->set_pagetitle($this->gettext('storage'));
 		$rcmail->output->send('storage.storage');
 	}
 
-	function content($attrib)
-	{
-		$rcmail = rcmail::get_instance();
-		//$this->include_script('client.js');		
+	function content($attrib) {
+		$rcmail = rcmail::get_instance();	
 		$src = $rcmail->config->get('storage_url', false);
 
 		$attrib['src'] = $src;
@@ -115,8 +110,7 @@ class storage extends rcube_plugin
 		return $rcmail->output->frame($attrib);
 	}
 
-	function attach_file()
-	{
+	function attach_file()	{
 		$rcmail = rcmail::get_instance();
 		$uploadid = rcube_utils::get_input_value('_tid', rcube_utils::INPUT_POST);
 		$filepath = rcube_utils::get_input_value('_file', rcube_utils::INPUT_POST);
