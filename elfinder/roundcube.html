@@ -98,12 +98,14 @@
 						fm.bind('init', function() {
 							// any your code
 						}).bind('editEditorPrepare', function(e){
-							if(data.id === 'aceeditor') {
-								data.instance.setOptions({
+							if(e.data.id === 'aceeditor') {
+								e.data.instance.setOptions({
 									theme: 'ace/theme/xcode',
 									wrap: false,
-									keybinding: 'vscode',
-									enableLiveAutocompletion: true
+									keyboardHandler: 'ace/keyboard/vscode',
+									enableBasicAutocompletion: true,
+									enableLiveAutocompletion: true,
+									enableSnippets: true
 								});
 							}
 						});
