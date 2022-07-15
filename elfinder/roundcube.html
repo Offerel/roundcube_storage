@@ -100,12 +100,13 @@
 						}).bind('editEditorPrepare', function(e){
 							if(e.data.id === 'aceeditor') {
 								e.data.instance.setOptions({
-									theme: 'ace/theme/xcode',
+									theme: 'ace/theme/monokai',
 									wrap: false,
 									keyboardHandler: 'ace/keyboard/vscode',
 									enableBasicAutocompletion: true,
 									enableLiveAutocompletion: true,
-									enableSnippets: true
+									enableSnippets: true,
+									useSoftTabs: false
 								});
 							}
 						});

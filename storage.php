@@ -3,9 +3,9 @@
  * Roundcube elfinder Plugin
  * Integrate elFinder in to Roundcube
  *
- * @version 1.4.4
+ * @version 1.4.6
  * @author Offerel
- * @copyright Copyright (c) 2018, Offerel
+ * @copyright Copyright (c) 2021, Offerel
  * @license GNU General Public License, version 3
  */
 class storage extends rcube_plugin
@@ -17,21 +17,22 @@ class storage extends rcube_plugin
 		$rcmail = rcmail::get_instance();
 		$this->load_config();
 		$this->add_texts('localization/', true);
-		$this->include_stylesheet($this->local_skin_path() . '/elfinder.min.css');
-		$this->include_script('client.min.js');
+		
 		$this->register_task('storage');
 
 		$this->add_button(array(
 			'label'	=> 'storage.storage',
 			'command'	=> 'storage',
 			'id'		=> 'ec962c3e-2322-46f4-adf0-6fa2be1b4312',
-			'class'		=> 'button-storage',
+			'class'		=> 'button-files',
 			'classsel'	=> 'button-storage button-selected',
 			'innerclass'=> 'button-inner',
 			'type'		=> 'link'
 		), 'taskbar');
 
 		if ($rcmail->task == 'storage') {
+		    $this->include_script('client.js');
+			$this->include_stylesheet($this->local_skin_path().'/elfinder.css');
 			$this->register_action('index', array($this, 'action'));
 			$rcmail->output->set_env('refresh_interval', 0);
 		}
