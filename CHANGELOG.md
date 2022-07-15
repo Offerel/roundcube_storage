@@ -1,3 +1,7 @@
+### v1.4.6
+- Updated ACE Editor to 1.5.0
+- Updated elFinder to 2.1.61
+  
 ### v1.4.5
 - tweak ACE editor
 - re-create some shortcuts
