@@ -1,7 +1,4 @@
 <?php
-// relative path to elfinder
-$config['storage_url'] = 'plugins/storage/elfinder/roundcube.html';
-
 // This is the absolute path to the elfinder root directory. You can use the variable %u as replacement for the Roundcube username
 $config['storage_basepath'] = '/mount/some/example_hdd/%u/files/';
 

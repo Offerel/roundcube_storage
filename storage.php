@@ -5,21 +5,17 @@
  *
  * @version 1.4.6
  * @author Offerel
- * @copyright Copyright (c) 2021, Offerel
+ * @copyright Copyright (c) 2022, Offerel
  * @license GNU General Public License, version 3
  */
-class storage extends rcube_plugin
-{
+class storage extends rcube_plugin {
 	public $task = '?(?!login|logout).*';
 
-	public function init()
-	{
+	public function init() {
 		$rcmail = rcmail::get_instance();
 		$this->load_config();
 		$this->add_texts('localization/', true);
-		
 		$this->register_task('storage');
-
 		$this->add_button(array(
 			'label'	=> 'storage.storage',
 			'command'	=> 'storage',
@@ -38,8 +34,8 @@ class storage extends rcube_plugin
 		}
 		
 		if ($rcmail->task == 'mail') {
-			$rcmail->output->set_env('spath', dirname($rcmail->config->get('storage_url', false))."/");
 			$rcmail->output->set_env('elbutton', $this->gettext('loadattachment'));
+			setcookie("ulang", $rcmail->get_user_language(), 0, '/');
 		}
 
 		$this->add_hook('template_container', array($this, 'add_saveatt_link'));
@@ -100,14 +96,11 @@ class storage extends rcube_plugin
 	}
 
 	function content($attrib) {
-		$rcmail = rcmail::get_instance();	
-		$src = $rcmail->config->get('storage_url', false);
-
-		$attrib['src'] = $src;
+		$rcmail = rcmail::get_instance();
+		$attrib['src'] = 'plugins/storage/elfinder/roundcube.html';
 		if (empty($attrib['id']))
 			$attrib['id'] = 'rcmailstoragecontent';
 		$attrib['name'] = $attrib['id'];
-		
 		return $rcmail->output->frame($attrib);
 	}
 

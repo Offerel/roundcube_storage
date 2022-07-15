@@ -6,31 +6,34 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
 		<script data-main="main.js" src="js/require.min.js"></script>
 		<script>
-			full_lng = (navigator.browserLanguage || navigator.language || navigator.userLanguage);full_lng = (navigator.browserLanguage || navigator.language || navigator.userLanguage);
+			full_lng = 'en-US';
+			let cookieA = document.cookie.split(';');
+			cookieA.forEach(function(e) {
+				el = e.split('=');
+				if(el[0].trim() == 'ulang') full_lng = el[1];
+			});
+			
 			lng = full_lng.substr(0,2);
 			if (lng == 'ja') lng = 'jp';
 			else if (lng == 'pt') lng = 'pt_BR';
 			else if (lng == 'zh') lng = (full_lng.substr(0,5) == 'zh-tw')? 'zh_TW' : 'zh_CN';
 
 			define('elFinderConfig', {
-				// elFinder options (REQUIRED)
-				// Documentation for client options:
-				// https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
 				defaultOpts : {
-					lang : lng
-					,url : 'php/connector.roundcube.php' // connector URL (REQUIRED)
-					,resizable: false
-					,rememberLastDir: false
-					,reloadClearHistory: false
-					,useBrowserHistory: false
-					,requestType: 'post'
-					,commands: [
+					lang : lng,
+					url : 'php/connector.roundcube.php',
+					resizable: false,
+					rememberLastDir: false,
+					reloadClearHistory: false,
+					useBrowserHistory: false,
+					requestType: 'post',
+					commands: [
 								'open', 'opendir', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook', 
 								'download', 'rm', 'duplicate', 'rename', 'mkdir', 'mkfile', 'upload', 'copy', 
 								'cut', 'paste', 'edit', 'extract', 'archive', 'search', 'info', 'view', 'help',
 								'resize', 'sort',  'chmod', 'colwidth'
-								]
-					,uiOptions : {
+								],
+					uiOptions : {
 						toolbar : [
 							['up', 'back', 'forward', 'reload'],
 							['mkdir', 'mkfile'],
@@ -45,56 +48,30 @@
 							['view'],['help']
 						],
                         toolbarExtra : {
-                            // also displays the text label on the button (true / false / 'none')
                             displayTextLabel: false,
-			                // Initial setting value of hide button in toolbar setting
-                            defaultHides: ['home'],
-                            // show Preference button into contextmenu of the toolbar (true / false)
+			                defaultHides: ['home'],
                             preferenceInContextmenu: false
                         },
-						// directories tree options
 						tree : {
-							// expand current root on init
 							openRootOnLoad : true,
-							// auto load current dir parents
 							syncTree : false
 						},
-
-						// navbar options
 						navbar : {
 							minWidth : 100,
 							maxWidth : 200
 						},
-
-						// current working directory options
 						cwd : {
-							// display parent directory in listing as ".."
-							oldSchool : true
+							oldSchool : false
 						}
-					}
-					,commandsOptions : {
+					},
+					commandsOptions : {
 						edit : {
-							extraOptions : {
-								// set API key to enable Creative Cloud image editor
-								// see https://console.adobe.io/
-								creativeCloudApiKey : '',
-								// browsing manager URL for CKEditor, TinyMCE
-								// uses self location with the empty value
-								managerUrl : ''
-							},
-							dialogWidth: 920,
 							shortcuts: [{
 								pattern : 'f4 ctrl+e'
 							}]
 						}
-						,quicklook : {
-							// to enable preview with Google Docs Viewer
-							googleDocsMimes : ['application/pdf', 'image/tiff', 'application/vnd.ms-office', 'application/msword', 'application/vnd.ms-word', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
-						}
-					}
-					// bootCalback calls at before elFinder boot up 
-					,bootCallback : function(fm, extraObj) {
-						/* any bind functions etc. */
+					},
+					bootCallback : function(fm, extraObj) {
 						fm.bind('init', function() {
 							// any your code
 						}).bind('editEditorPrepare', function(e){
@@ -109,8 +86,13 @@
 									useSoftTabs: false
 								});
 							}
+							/*
+							if(e.data.id === 'textarea') {
+								e.mimes = '';
+							}
+							*/
 						});
-						// for example set document.title dynamically.
+
 						var title = document.title;
 						fm.bind('open', function() {
 							var path = '',
@@ -122,35 +104,25 @@
 						}).bind('destroy', function() {
 							document.title = title;
 						});
-						// maximize editor dialog
-						fm.bind('dialogopened', function(e) {
-							var dialog = e.data.dialog;
-							if (dialog.hasClass('elfinder-dialog-edit')) {
-								dialog.find('.elfinder-titlebar-button.elfinder-titlebar-full').trigger('mousedown');
-							}
-						});
 					}
 				},
 				managers : {
-					// 'DOM Element ID': { /* elFinder options of this DOM Element */ }
 					'elfinder': { 
 						cdns : {
-						// for editor etc.
-						ace        : 'js/ace', // or your location
-						codemirror : null, // or your location
-						ckeditor   : null,
-						ckeditor5  : null, 
-						tinymce    : null, // or your location
-						simplemde  : null, // or your location
-						// for quicklook etc.
-						hls        : null, // or your location
-						dash       : null, // or your location
-						prettify   : null, // or your location
-						psd        : null, // or your location
-						rar        : null, // or your location
-						zlibUnzip  : null, // or your location
-						zlibGunzip : null  // or your location
-					}
+							ace        : 'js/ace',
+							codemirror : null, // or your location
+							ckeditor   : null,
+							ckeditor5  : null, 
+							tinymce    : null, // or your location
+							simplemde  : null, // or your location
+							hls        : null, // or your location
+							dash       : null, // or your location
+							prettify   : null, // or your location
+							psd        : null, // or your location
+							rar        : null, // or your location
+							zlibUnzip  : null, // or your location
+							zlibGunzip : null  // or your location
+						}
 					}
 				}
 				}

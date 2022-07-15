@@ -1,7 +1,7 @@
 /**
  * Roundcube elfinder Plugin
  *
- * @version 1.4.5
+ * @version 1.4.6
  * @author Offerel
  * @copyright Copyright (c) 2021, Offerel
  * @license GNU General Public License, version 3
@@ -41,15 +41,13 @@ function dmessage(response) {
 }
     
 function cform() {
-	var storage_path = rcmail.env.spath;
-	var cid = location.search.split('id=')[1];
-	var specs = "location=no,menubar=no,resizable=no,scrollbars=no,status=no,titlebar=no,toolbar=no,width=840,height=370,";
-	var elwindow = window.open(storage_path + "elopen.html?id=" + cid,"elopen",specs,false);
+	let specs = "location=no,menubar=no,resizable=no,scrollbars=no,status=no,titlebar=no,toolbar=no,width=840,height=370,";
+	var elwindow = window.open('plugins/storage/elfinder/elopen.html?id=' + location.search.split('id=')[1], 'elopen', specs, false);
 }
 
 function elcallback(files,cid,tid) {
 	for (id in files) {
 		rcmail.http_post('storage/elattach', '_tid=' + tid + '&_cid=' + cid + '&_file=' + files[id].path);
-		}
+	}
 
 }

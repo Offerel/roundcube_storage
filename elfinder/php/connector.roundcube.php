@@ -15,8 +15,7 @@ if (!empty($rcmail->user->ID)) {
 		error_log("Calculated path: ".$path);
 
 	// if the userfolder does not exist yet, create it automatically.
-	if (!is_dir($path))
-	{
+	if (!is_dir($path)) {
 		if(!mkdir($path, 0774, true)) {
 			error_log('Plugin Storage: Trying to create not existing folder specified in $config[\'storage_basepath\'] ("'.$path.'") failed. Please check your directory permissions.');
 			die();
@@ -26,13 +25,11 @@ if (!empty($rcmail->user->ID)) {
 	// check if attachment path exists and create if not exist
 	$attpath = $path.'/'.$rcmail->config->get('storage_attachments', false);
 	
-	if (!is_dir($attpath))
-	{
+	if (!is_dir($attpath)) {
 		mkdir($attpath, 0774, true);
 		error_log('Plugin Storage: Subfolders for $config[\'storage_attachments\'] auto-created, since they not exists yet');
 	}
-}
-else {
+} else {
 	error_log('Plugin Storage: Login failed. User is not logged in.');
 	die();
 }
@@ -50,10 +47,8 @@ function access($attr, $path, $data, $volume, $isDir, $relpath) {
 		:  null;                                 // else elFinder decide it itself
 }
 
-// Documentation for connector options:
-// https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options
 $opts = array(
-	//'debug' => true,
+	'debug' => false,
 	'roots' => array(
 		array(
 			'driver'        => 'LocalFileSystem',
@@ -62,10 +57,14 @@ $opts = array(
 			'alias'			=> $storage_name,
 			'uploadOrder'   => array('deny', 'allow'),
 			'accessControl' => 'access',
+			'tmbFbSelf'		=> false,
 			'tmbPath' 		=> '/tmp/elfindertmb',
-			'tmbURL'        => 'self',
+			//'tmbURL'        => 'self',
 			'imglib'        => 'auto',
-			'quarantine' 	=> '/tmp'
+			'quarantine' 	=> '/tmp',
+			'checkSubfolders' => -1,
+			'mimeDetect'	=>'mime_content_type',
+			'treeDeep'		=> 1,
 		)
 	)
 );
