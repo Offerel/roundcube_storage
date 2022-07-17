@@ -1,3 +1,8 @@
+### v1.4.7
+- Fix forJS error
+- Worker Test
+
+
 ### v1.4.6
 - Updated ACE Editor to 1.5.0
 - Updated elFinder to 2.1.61
