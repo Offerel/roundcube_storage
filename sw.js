@@ -1,6 +1,7 @@
 const cacheName = 'storage';
 const cacheVersion = 'v1';
 const urlsToCache = [
+	'client.js',
 	'client.min.js',
 	'elfinder/roundcube.html',
 	'elfinder/elopen.html',
@@ -10,9 +11,10 @@ const urlsToCache = [
 	'elfinder/js/jquery.min.js',
 	'elfinder/js/jquery-ui.min.js',
 	'elfinder/js/ace/ace.js',
-	'elfinder/js/extras/editors.default.min.js',
+	'elfinder/js/extras/editors.local.min.js',
 	'elfinder/js/i18n/elfinder.de.js',
 	'elfinder/js/i18n/elfinder.LANG.js',
+	'elfinder/js/i18n/elfinder.fallback.js',
 	'elfinder/css/theme.css',
 	'elfinder/css/elfinder.min.css',
 	'elfinder/css/jquery-ui.css',
