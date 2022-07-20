@@ -1,3 +1,6 @@
+### v1.4.8
+- Fix ACE editor
+  
 ### v1.4.7
 - Fix forJS error
 - Worker Test
