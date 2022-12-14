@@ -49,7 +49,7 @@
 						],
                         toolbarExtra : {
                             displayTextLabel: false,
-			                defaultHides: ['home'],
+							defaultHides: ['home'],
                             preferenceInContextmenu: false
                         },
 						tree : {
@@ -58,7 +58,8 @@
 						},
 						navbar : {
 							minWidth : 100,
-							maxWidth : 200
+							maxWidth : 200,
+							autoHideUA: ['Mobile']
 						},
 						cwd : {
 							oldSchool : false
@@ -71,9 +72,24 @@
 							}]
 						}
 					},
+					handlers: {
+						select: function(event, elfinderInstance) {
+							if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)) {
+								var selected = event.data.selected;
+								if (selected.length > 0) {
+									var file = elfinderInstance.file(selected[0]);
+									if ('directory' == file.mime) {
+										elfinderInstance.request({data:{cmd: 'open', target: selected[0]},notify:{type:'open',target:selected[0]}, syncOnFail:true});
+									} else if ('application/pdf' == file.mime) {
+										$url = elf.uploadURL +'/'+ file.name;
+										window.open( $url );
+									}
+								}
+							}
+						}
+					},
 					bootCallback : function(fm, extraObj) {
 						fm.bind('init', function() {
-							// any your code
 						}).bind('editEditorPrepare', function(e){
 							if(e.data.id === 'aceeditor') {
 								e.data.instance.setOptions({
@@ -86,11 +102,6 @@
 									useSoftTabs: false
 								});
 							}
-							/*
-							if(e.data.id === 'textarea') {
-								e.mimes = '';
-							}
-							*/
 						});
 
 						var title = document.title;

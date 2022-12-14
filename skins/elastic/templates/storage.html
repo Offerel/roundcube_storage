@@ -2,6 +2,10 @@
 <roundcube:include file="includes/menu.html" />
 <h1 class="voice"><roundcube:label name="storage.storage" /></h1>
 <div id="content" class="content selected storage" role="main">
+	<div id="storage-header" class="header stheader">
+		<a class="button icon task-menu-button" href="#menu"><span class="inner"><roundcube:label name="menu" /></span></a>
+		<span class="header-title" style="margin-right: 4px; margin-left: 0px; padding-right: 0px;"><roundcube:label name="storage.storage" /></span>
+	</div>
 	<div class="iframe-wrapper">
 		<div id="pluginbody" class="offset">
 			<div class="iframebox storage_<roundcube:var name='env:action' />">

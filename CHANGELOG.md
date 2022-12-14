@@ -1,3 +1,9 @@
+### v1.4.9
+- Fixe for mobile view, fixes #15
+- Automatically hide navbar and toolbar on mobile
+- Single click to open folder on mobile
+- Updated ACE Editor to 1.14.0
+  
 ### v1.4.8
 - Fix ACE editor
   
