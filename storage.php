@@ -3,9 +3,9 @@
  * Roundcube elfinder Plugin
  * Integrate elFinder in to Roundcube
  *
- * @version 1.4.9
+ * @version 1.4.10
  * @author Offerel
- * @copyright Copyright (c) 2022, Offerel
+ * @copyright Copyright (c) 2023, Offerel
  * @license GNU General Public License, version 3
  */
 class storage extends rcube_plugin {
@@ -13,6 +13,7 @@ class storage extends rcube_plugin {
 
 	public function init() {
 		$rcmail = rcmail::get_instance();
+		$this->include_script('client.js');
 		$this->load_config();
 		$this->add_texts('localization/', true);
 		$this->register_task('storage');
@@ -27,7 +28,6 @@ class storage extends rcube_plugin {
 		), 'taskbar');
 
 		if ($rcmail->task == 'storage') {
-		    $this->include_script('client.js');
 			$this->include_stylesheet($this->local_skin_path().'/elfinder.css');
 			$this->register_action('index', array($this, 'action'));
 			$rcmail->output->set_env('refresh_interval', 0);
@@ -35,7 +35,14 @@ class storage extends rcube_plugin {
 		
 		if ($rcmail->task == 'mail') {
 			$rcmail->output->set_env('elbutton', $this->gettext('loadattachment'));
-			setcookie("ulang", $rcmail->get_user_language(), 0, '/');
+			$cookie_options = array(
+				'expires' => 0,
+				'path' => '/',
+				'secure' => true,
+				'httponly' => true,
+				'samesite' => 'Strict'
+			); 
+			setcookie("ulang", $rcmail->get_user_language(), $cookie_options);
 		}
 
 		$this->add_hook('template_container', array($this, 'add_saveatt_link'));
@@ -64,8 +71,7 @@ class storage extends rcube_plugin {
 		$path = str_replace("%u", $rcmail->user->get_username(), $rcmail->config->get('storage_basepath', false));
 		
 		$attpath = $path.'/'.$rcmail->config->get('storage_attachments', false);		
-		if (!is_dir($attpath))
-		{
+		if (!is_dir($attpath)) {
 			mkdir($attpath);         
 		}
 		

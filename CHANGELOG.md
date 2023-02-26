@@ -1,3 +1,6 @@
+### v1.4.10
+- Fix #17
+  
 ### v1.4.9
 - Fixe for mobile view, fixes #15
 - Automatically hide navbar and toolbar on mobile
