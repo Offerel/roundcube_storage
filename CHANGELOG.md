@@ -1,5 +1,6 @@
 ### v1.4.10
 - Fix #17
+- Fix #18 Added brazilian portuguese, thanks to mvldebian
   
 ### v1.4.9
 - Fixe for mobile view, fixes #15
