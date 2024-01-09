@@ -1,3 +1,7 @@
+### v1.4.11
+- Updated elFinder to 2.1.65
+- Updated ACE Editor to 1.32.3
+
 ### v1.4.10
 - Fix #17
 - Fix #18 Added brazilian portuguese, thanks to mvldebian

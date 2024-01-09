@@ -1,9 +1,9 @@
 /**
  * Roundcube elfinder Plugin
  *
- * @version 1.4.10
+ * @version 1.4.11
  * @author Offerel
- * @copyright Copyright (c) 2023, Offerel
+ * @copyright Copyright (c) 2024, Offerel
  * @license GNU General Public License, version 3
  */
 window.rcmail && rcmail.addEventListener('init', function(evt) {
@@ -21,6 +21,7 @@ window.rcmail && rcmail.addEventListener('init', function(evt) {
 	$("#compose-attachments").contents().find("button").after("<button class='btn btn-secondary attach' tabindex='3' href='#' style='margin-left: 5px;' onclick='cform();'>" + rcmail.env.elbutton + "</button>");
 });
 
+/*
 if('serviceWorker' in navigator) {
 	window.addEventListener('load', function() {
 		navigator.serviceWorker.register('plugins/storage/sw.js').then(function(registration) {
@@ -30,6 +31,7 @@ if('serviceWorker' in navigator) {
 		});
 	});
 }
+*/
 
 function save_one() {
 	var part = rcmail.env.selected_attachment;
