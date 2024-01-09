@@ -3,9 +3,9 @@
  * Roundcube elfinder Plugin
  * Integrate elFinder in to Roundcube
  *
- * @version 1.4.10
+ * @version 1.4.11
  * @author Offerel
- * @copyright Copyright (c) 2023, Offerel
+ * @copyright Copyright (c) 2024, Offerel
  * @license GNU General Public License, version 3
  */
 class storage extends rcube_plugin {
