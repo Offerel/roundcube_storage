@@ -1,1 +1,5 @@
 elfinder/js/ace.zip
+*.bak
+env.properties
+config.inc.php
+.vscode
